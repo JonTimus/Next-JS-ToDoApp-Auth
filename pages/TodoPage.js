@@ -87,12 +87,14 @@ export default function TodoPage() {
   console.log(todos);
 
   return (
-    <div className='todolist-container place-content-center'>
-      <form onSubmit={addHandler}>
-        <input value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
-        <button type="submit">ADD</button>
+    <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
+      <h1>Todo List</h1>
+      <form onSubmit={addHandler} className=''>
+        <input value={newTodo} onChange={(e) => setNewTodo(e.target.value)} className='border border-gray-400'/>
+        <button type="submit" className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">ADD</button>
       </form>
-      <div className='place-content-center'>
+      <div>
+
         {todos.map((todo, idx) => (
           <div key={idx}>
             <div>{todo.id}</div>
@@ -110,8 +112,8 @@ export default function TodoPage() {
                     )
                   }
                 />
-                <button onClick={() => saveHandler(todo.id, todo.title)}>SAVE</button>
-                <button onClick={() => cancelHandler(todo.id)}>CANCEL</button>
+                <button onClick={() => saveHandler(todo.id, todo.title)} className='bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 font-bold rounded'>SAVE</button>
+                <button onClick={() => cancelHandler(todo.id)} className='bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 font-bold rounded'>CANCEL</button>
               </div>
             ) : (
               <div>{todo.title}</div>
@@ -119,9 +121,9 @@ export default function TodoPage() {
 
             <div>{todo.completed ? "completed" : "not"}</div>
             <div className="todo-actions">
-              <button onClick={() => deleteHandler(todo.id)}>DELETE</button>
-              <button onClick={() => editHandler(todo.id, todo.title)}>EDIT</button>
-              <button onClick={() => toggleHandler(todo.id)}>TOGGLE</button>
+              <button onClick={() => deleteHandler(todo.id)} className='bg-red-500 hover:bg-red-700 text-white py-1 px-3 font-bold rounded'>Delete</button>
+              <button onClick={() => editHandler(todo.id, todo.title)} className='bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 font-bold rounded'>Edit</button>
+              <button onClick={() => toggleHandler(todo.id)} className='bg-green-500 hover:bg-green-700 text-white py-1 px-3 font-bold rounded'>Toggle</button>
             </div>
           </div>
         ))}
