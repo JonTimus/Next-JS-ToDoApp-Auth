@@ -1,11 +1,15 @@
-import Header from '@/components/Header'
-import Login from '@/components/Login'
-import Head from 'next/head'
-import Image from 'next/image'
-import TodoPage from './TodoPage'
-
+import Header from '@/components/Header';
+import Head from 'next/head';
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import TodoList from '@/components/TodoList';
 
 export default function Home() {
+  const { data: session, status } = useSession();
+
+  const handleSignOut = async () => {
+    await signOut(); // Sign out using the signOut function
+  };
+
   return (
     <>
       <Head>
@@ -15,7 +19,21 @@ export default function Home() {
       </Head>
       
       <Header />
-      <TodoPage />
+      <main className='conatiner mx-auto flex flex-col items-center justify-center'>
+        {status === 'authenticated' ? (
+          <>
+            <p>Welcome, {session.user.name}!</p>
+            <TodoList />
+            <button className='text-blue-400' onClick={handleSignOut}>
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <button className='text-blue-400' onClick={() => signIn()}>
+            Sign In
+          </button>
+        )}
+      </main>
     </>
-  )
+  );
 }

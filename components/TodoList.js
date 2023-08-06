@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function TodoPage() {
+export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [isEditing, setIsEditing] = useState({});
