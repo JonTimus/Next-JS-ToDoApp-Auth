@@ -1,21 +1,31 @@
 import React, { useState } from 'react'
+
+// Get auth methods from context
 import { useAuth } from '../context/AuthContext'
-// import { getUser } from './firebase';
 
 export default function Login() {
+
+  // Local state for form fields and error
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+
+  // Track if logging in vs signing up 
   const [isLoggingIn, setIsLoggingIn] = useState(true)
 
+  // Get auth context values
   const { login, signup, currentUser } = useAuth()
-  console.log(currentUser)
 
+  // Handle form submission  
   async function submitHandler() {
+
+    // Basic validation
     if (!email || !password) {
       setError('Please enter email and password')
       return
     }
+
+    // Try login if logging in
     if (isLoggingIn) {
       try {
         await login(email, password)
@@ -24,10 +34,8 @@ export default function Login() {
       }
       return
     }
-    // const user = await getUser(email);
-    // if (user) {
-    //   setError('User already exists');
-    // }
+
+    // Sign up if registering
     await signup(email, password)
   }
 
