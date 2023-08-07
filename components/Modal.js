@@ -17,6 +17,9 @@ export default function Modal(props) {
     // Get logout function from AuthContext
     const { logout } = useAuth()
 
+    // Get currentUser from AuthContext
+    const { currentUser } = useAuth();
+
     // On mount, set _document to actual document 
     useEffect(() => {
         set_document(document)
@@ -40,11 +43,11 @@ export default function Modal(props) {
             {/* Modal content */}
             <div className='p-4 flex flex-col gap-3'>
 
-                {/* Logout button */}
-                <h2 onClick={() => {
+                {/* Only show logout if currentUser exists */}
+                {currentUser && <h2 onClick={() => {
                     logout()
                     setOpenModal(false)
-                }} className='select-none duration-300 hover:pl-2 cursor-pointer'>Logout</h2>
+                }} className='select-none duration-300 hover:pl-2 cursor-pointer'>Logout</h2>}
             </div>
 
         </div>,
