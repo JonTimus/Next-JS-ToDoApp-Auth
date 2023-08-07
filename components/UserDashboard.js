@@ -16,7 +16,7 @@ export default function UserDashboard() {
 
     // Get authentication context values
     // This provides access to user info and currentUser object
-    const { userInfo, currentUser } = useAuth()
+    const { currentUser } = useAuth()
 
     // Local state for managing edit mode and new todo values
     const [edit, setEdit] = useState(null)
