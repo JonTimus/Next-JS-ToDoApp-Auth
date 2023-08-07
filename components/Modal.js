@@ -14,11 +14,8 @@ export default function Modal(props) {
     // State to hold document element
     const [_document, set_document] = useState(null)
 
-    // Get logout function from AuthContext
-    const { logout } = useAuth()
-
-    // Get currentUser from AuthContext
-    const { currentUser } = useAuth();
+    // Get currentUser and logout function from AuthContext
+    const { currentUser, logout } = useAuth()
 
     // On mount, set _document to actual document 
     useEffect(() => {
@@ -30,11 +27,13 @@ export default function Modal(props) {
 
     // Render modal HTML using React Portal
     return ReactDom.createPortal(
-        <div className='fixed inset-0 bg-white text-slate-900 text-lg sm:text-xl flex flex-col'>
+        <div className='fixed inset-0 bg-emerald-50 text-slate-900 text-lg sm:text-xl flex flex-col'>
 
             {/* Modal header */}
             <div className='flex items-center justify-between border-b border-solid border-slate-900 p-4'>
-                <h1 className='font-extrabold text-2xl sm:text-5xl select-none'>MENU</h1>
+                <h1 className='font-extrabold text-2xl sm:text-5xl select-none'>
+                    {currentUser ? 'Hello, ' + currentUser.email : 'MENU'}
+                </h1>
 
                 {/* Close icon */}
                 <i onClick={() => setOpenModal(false)} className="fa-solid fa-xmark duration-300 hover:rotate-90 text-lg sm:text-3xl cursor-pointer"></i>
