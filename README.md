@@ -1,20 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js To-Do App
+  This is a CRUD to-do app built with Next.js, Firebase for authentication, and Tailwind CSS for styling.
 
-## Getting Started
+### Features
+- User authentication with Firebase
+- Create/update/delete to-dos
+- Persist to-dos in Firestore database
+- Responsive design with Tailwind CSS
 
-First, run the development server:
+## Usage
+### Install Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+`npm install`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configure Firebase
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Create a Firebase project
+- Add a web app to the project
+- Copy the Firebase config from the project settings into `.env.local`
+
+### Run Development Server
+
+`npm run dev`
+
+Open http://localhost:3000 to view the app in your browser.
+
+The page will reload when you make changes.
+
+Built With
+- Next.js - React Framework
+- Firebase - Backend/Authentication
+- Tailwind CSS - Styling
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
